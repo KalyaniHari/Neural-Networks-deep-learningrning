@@ -1,0 +1,478 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyN3dYCS5s9RiKurzjVvYqPG",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/KalyaniHari/Neural-Networks-deep-learningrning/blob/main/week2/NNDL_ICP2\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "1. Create a class Employee and then do the following"
+      ],
+      "metadata": {
+        "id": "uKWdIVjECCNj"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Create a data member to count the number of Employees"
+      ],
+      "metadata": {
+        "id": "1OWRnDJbCJ8D"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Employee:\n",
+        "    # This is a class variable to count the number of employees\n",
+        "    employee_count = 0\n",
+        "\n",
+        "    def __init__(self, name, position):\n",
+        "        # Instance variables for storing employee details\n",
+        "        self.name = name\n",
+        "        self.position = position\n",
+        "\n",
+        "        # Increment the employee count whenever a new Employee object is created\n",
+        "        Employee.employee_count += 1\n",
+        "\n",
+        "# Creating employees\n",
+        "emp1 = Employee(\"Kalyani\", \"Developer\")  # This creates the first employee\n",
+        "emp2 = Employee(\"Varshitha\", \"Manager\")     # This creates the second employee\n",
+        "\n",
+        "# Print the total number of employees\n",
+        "print(\"Total number of employees:\", Employee.employee_count)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "bgDAzkxECU5C",
+        "outputId": "a4038eee-7d2a-441d-c0a1-371a476c3623"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Total number of employees: 2\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Create a constructor to initialize name, family, salary, department"
+      ],
+      "metadata": {
+        "id": "kXws3aK_CVf-"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Employee:\n",
+        "    # Class variable to count the number of employees\n",
+        "    employee_count = 0\n",
+        "\n",
+        "    def __init__(self, name, family, salary, department):\n",
+        "        # Instance variables to store employee details\n",
+        "        self.name = name\n",
+        "        self.family = family\n",
+        "        self.salary = salary\n",
+        "        self.department = department\n",
+        "\n",
+        "        # Increment the employee count when a new Employee object is created\n",
+        "        Employee.employee_count += 1\n",
+        "\n",
+        "    def display_info(self):\n",
+        "        # Display the employee's details\n",
+        "        print(f\"Name: {self.name}, Family: {self.family}, Salary: {self.salary}, Department: {self.department}\")\n",
+        "\n",
+        "# Creating employee objects and initializing them with details\n",
+        "emp1 = Employee(\"Kalyani\", \"Hari\", 50000, \"IT\")\n",
+        "emp2 = Employee(\"Varshitha\", \"Kurra\", 60000, \"HR\")\n",
+        "\n",
+        "# Displaying employee details\n",
+        "emp1.display_info()\n",
+        "emp2.display_info()\n",
+        "\n",
+        "# Displaying the total number of employees\n",
+        "print(\"Total number of employees:\", Employee.employee_count)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "GZlyasA9CgA7",
+        "outputId": "b5a9ab5f-dede-4d2a-fbfe-fb71924ef60e"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: Kalyani, Family: Hari, Salary: 50000, Department: IT\n",
+            "Name: Varshitha, Family: Kurra, Salary: 60000, Department: HR\n",
+            "Total number of employees: 2\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Create a function to average salary"
+      ],
+      "metadata": {
+        "id": "9XggURrrCiDh"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Employee:\n",
+        "    # Class variables\n",
+        "    employee_count = 0\n",
+        "    total_salary = 0\n",
+        "\n",
+        "    def __init__(self, name, family, salary, department):\n",
+        "        # Initialize instance variables\n",
+        "        self.name = name\n",
+        "        self.family = family\n",
+        "        self.salary = salary\n",
+        "        self.department = department\n",
+        "\n",
+        "        # Update class variables\n",
+        "        Employee.employee_count += 1\n",
+        "        Employee.total_salary += salary\n",
+        "\n",
+        "# Function to calculate and print the average salary\n",
+        "def average_salary():\n",
+        "    if Employee.employee_count == 0:\n",
+        "        print(\"No employees to calculate average salary.\")\n",
+        "        return\n",
+        "    avg_salary = Employee.total_salary / Employee.employee_count\n",
+        "    print(f\"Average Salary: {avg_salary}\")\n",
+        "\n",
+        "# Creating employee objects\n",
+        "emp1 = Employee(\"Kalyani\", \"Hari\", 50000, \"IT\")\n",
+        "emp2 = Employee(\"Varshitha\", \"Kurra\", 60000, \"HR\")\n",
+        "emp3 = Employee(\"Bhavana\", \"Miriyala\", 55000, \"Finance\")\n",
+        "\n",
+        "# Printing the average salary\n",
+        "average_salary()\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "PcSbS4cqCpOg",
+        "outputId": "d39470b2-1e44-4bf2-9b3b-98b3b92749a2"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Average Salary: 55000.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Create a Fulltime Employee class and it should inherit the properties of Employee class"
+      ],
+      "metadata": {
+        "id": "PStzqH6DCqQI"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Base class\n",
+        "class Employee:\n",
+        "    employee_count = 0\n",
+        "    total_salary = 0\n",
+        "\n",
+        "    def __init__(self, name, family, salary, department):\n",
+        "        self.name = name\n",
+        "        self.family = family\n",
+        "        self.salary = salary\n",
+        "        self.department = department\n",
+        "\n",
+        "        Employee.employee_count += 1\n",
+        "        Employee.total_salary += salary\n",
+        "\n",
+        "# Function to calculate and print the average salary\n",
+        "def average_salary():\n",
+        "    if Employee.employee_count == 0:\n",
+        "        print(\"No employees to calculate average salary.\")\n",
+        "        return\n",
+        "    avg_salary = Employee.total_salary / Employee.employee_count\n",
+        "    print(f\"Average Salary: {avg_salary}\")\n",
+        "\n",
+        "# Subclass inheriting from Employee\n",
+        "class FulltimeEmployee(Employee):\n",
+        "    def __init__(self, name, family, salary, department, benefits):\n",
+        "        # Call the parent class constructor to initialize common properties\n",
+        "        super().__init__(name, family, salary, department)\n",
+        "        self.benefits = benefits  # Additional attribute specific to full-time employees\n",
+        "\n",
+        "    def display_fulltime_info(self):\n",
+        "        # Display details of the full-time employee\n",
+        "        print(f\"Name: {self.name}, Family: {self.family}, Salary: {self.salary}, \"\n",
+        "              f\"Department: {self.department}, Benefits: {self.benefits}\")\n",
+        "\n",
+        "# Example Usage:\n",
+        "# Creating full-time employee objects\n",
+        "fte1 = FulltimeEmployee(\"Kalyani\", \"Hari\", 70000, \"IT\", \"Health Insurance\")\n",
+        "fte2 = FulltimeEmployee(\"Varshitha\", \"Kurra\", 80000, \"HR\", \"Retirement Plan\")\n",
+        "\n",
+        "# Display full-time employee details\n",
+        "fte1.display_fulltime_info()\n",
+        "fte2.display_fulltime_info()\n",
+        "\n",
+        "# Calculate and display the average salary\n",
+        "average_salary()\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "b9bbWxmxC1h3",
+        "outputId": "42cfc113-fcd9-4f19-80fa-15135c18f238"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: Kalyani, Family: Hari, Salary: 70000, Department: IT, Benefits: Health Insurance\n",
+            "Name: Varshitha, Family: Kurra, Salary: 80000, Department: HR, Benefits: Retirement Plan\n",
+            "Average Salary: 75000.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Create the instances of Fulltime Employee class and Employee class and call their member functions."
+      ],
+      "metadata": {
+        "id": "30XlrJ8gC2Gr"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Base class\n",
+        "class Employee:\n",
+        "    employee_count = 0\n",
+        "    total_salary = 0\n",
+        "\n",
+        "    def __init__(self, name, family, salary, department):\n",
+        "        self.name = name\n",
+        "        self.family = family\n",
+        "        self.salary = salary\n",
+        "        self.department = department\n",
+        "\n",
+        "        # Increment total employees and add salary to total\n",
+        "        Employee.employee_count += 1\n",
+        "        Employee.total_salary += salary\n",
+        "\n",
+        "    def display_info(self):\n",
+        "        # Display employee details\n",
+        "        print(f\"Name: {self.name}, Family: {self.family}, Salary: {self.salary}, Department: {self.department}\")\n",
+        "\n",
+        "# Function to calculate and print the average salary\n",
+        "def average_salary():\n",
+        "    if Employee.employee_count == 0:\n",
+        "        print(\"No employees to calculate average salary.\")\n",
+        "        return\n",
+        "    avg_salary = Employee.total_salary / Employee.employee_count\n",
+        "    print(f\"Average Salary: {avg_salary}\")\n",
+        "\n",
+        "# Subclass inheriting from Employee\n",
+        "class FulltimeEmployee(Employee):\n",
+        "    def __init__(self, name, family, salary, department, benefits):\n",
+        "        super().__init__(name, family, salary, department)\n",
+        "        self.benefits = benefits\n",
+        "\n",
+        "    def display_fulltime_info(self):\n",
+        "        # Display full-time employee details\n",
+        "        print(f\"Name: {self.name}, Family: {self.family}, Salary: {self.salary}, \"\n",
+        "              f\"Department: {self.department}, Benefits: {self.benefits}\")\n",
+        "\n",
+        "# Create instances of Employee and FulltimeEmployee\n",
+        "emp1 = Employee(\"Kalyani\", \"Hari\", 50000, \"Finance\")\n",
+        "fte1 = FulltimeEmployee(\"Varshitha\", \"Kurra\", 70000, \"IT\", \"Health Insurance\")\n",
+        "fte2 = FulltimeEmployee(\"Bhavana\", \"Miriyala\", 80000, \"HR\", \"Retirement Plan\")\n",
+        "\n",
+        "# Call member functions\n",
+        "print(\"Employee Details:\")\n",
+        "emp1.display_info()\n",
+        "\n",
+        "print(\"\\nFull-Time Employee Details:\")\n",
+        "fte1.display_fulltime_info()\n",
+        "fte2.display_fulltime_info()\n",
+        "\n",
+        "# Calculate and print the average salary\n",
+        "print(\"\\nCalculating Average Salary:\")\n",
+        "average_salary()\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "1lOKhCUYC9yv",
+        "outputId": "6c8f56c8-4954-4c60-a7ab-47e5566c0e55"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Employee Details:\n",
+            "Name: Kalyani, Family: Hari, Salary: 50000, Department: Finance\n",
+            "\n",
+            "Full-Time Employee Details:\n",
+            "Name: Varshitha, Family: Kurra, Salary: 70000, Department: IT, Benefits: Health Insurance\n",
+            "Name: Bhavana, Family: Miriyala, Salary: 80000, Department: HR, Benefits: Retirement Plan\n",
+            "\n",
+            "Calculating Average Salary:\n",
+            "Average Salary: 66666.66666666667\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "\n",
+        "\n",
+        "---\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "A86VWEn3C-48"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "2. Numpy"
+      ],
+      "metadata": {
+        "id": "WgLA446gDBCc"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Using NumPy create random vector of size 20 having only float in the range 1-20.\n",
+        "\n",
+        "Then reshape the array to 4 by 5.\n",
+        "\n",
+        "Then replace the max in each row by 0 (axis=1)\n",
+        "\n",
+        "(you can NOT implement it via for loop)"
+      ],
+      "metadata": {
+        "id": "QxLvUtbCDPT9"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import numpy as np\n",
+        "\n",
+        "# Create a random vector of size 20 with floats in the range 1-20\n",
+        "vector = np.random.uniform(1, 20, 20)\n",
+        "\n",
+        "# Reshape the vector into a 4x5 matrix\n",
+        "matrix = vector.reshape(4, 5)\n",
+        "\n",
+        "# Replace the maximum value in each row with 0\n",
+        "# Find the index of the maximum value in each row\n",
+        "max_indices = np.argmax(matrix, axis=1)\n",
+        "\n",
+        "# Replace the maximum value in each row with 0\n",
+        "for i in range(matrix.shape[0]):\n",
+        "    matrix[i, max_indices[i]] = 0\n",
+        "\n",
+        "# Print the final matrix\n",
+        "print(\"Final Matrix:\\n\", matrix)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "pCwYq67UDhHZ",
+        "outputId": "5d460f49-6e26-4c76-b5ea-f01fed8d87f4"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Final Matrix:\n",
+            " [[10.21888272  8.18046428  0.         10.64586148  4.42881048]\n",
+            " [ 0.          7.77275005  7.17798682 17.62031061 12.88846895]\n",
+            " [ 8.71465519  1.9996168  15.72361017 10.08268047  0.        ]\n",
+            " [ 2.40222913  0.          7.90778563 10.096382   18.42291974]]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [],
+      "metadata": {
+        "id": "zzcmknNpsakQ"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Video link: https://www.canva.com/design/DAGc4SvJuJ0/-Ur3WLuKa41OhCebgpEcMg/watch?utm_content=DAGc4SvJuJ0&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h4bb333ba2c\n"
+      ],
+      "metadata": {
+        "id": "v_2H1diZxjXE"
+      }
+    }
+  ]
+}
